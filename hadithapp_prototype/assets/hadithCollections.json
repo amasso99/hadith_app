@@ -1,0 +1,50 @@
+[
+    {
+      "id": 0,
+      "name": "Sahih al-Bukhari",
+      "author": "al-Bukhari",
+      "description": "description",
+      "totalHadith": 7563,
+      "totalChapters": 97
+    },
+    {
+      "id": 1,
+      "name": "Sahih Muslim",
+      "author": "Muslim ibn al-Hajjaj",
+      "description": "description",
+      "totalHadith": 7395,
+      "totalChapters": 56
+    },
+    {
+      "id": 2,
+      "name": "Sunan Abu Dawood",
+      "author": "Abu Dawood",
+      "description": "description",
+      "totalHadith": 5274,
+      "totalChapters": 43
+    },
+    {
+      "id": 3,
+      "name": "Sahih al-Tirmidhi",
+      "author": "al-Tirmidhi",
+      "description": "description",
+      "totalHadith": 4400,
+      "totalChapters": 49
+    },
+    {
+      "id": 4,
+      "name": "Sunan al-Nasa'i",
+      "author": "al-Nasa'i",
+      "description": "description",
+      "totalHadith": 5766,
+      "totalChapters": 52
+    },
+    {
+      "id": 5,
+      "name": "Sunan Ibn Majah",
+      "author": "Ibn Majah",
+      "description": "description",
+      "totalHadith": 4341,
+      "totalChapters": 49
+    }
+  ]
