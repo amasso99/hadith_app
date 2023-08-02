@@ -5,6 +5,7 @@ import 'package:myapp/models/hadith_collection.dart';
 import 'package:myapp/utils.dart';
 
 import 'components/home_component.dart';
+import 'hadith_collection_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,7 +38,43 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   lastReadHadith(context),
                   SizedBox(height: 20 * fem),
-                  cardBox(context, 300, 100),
+                  Container(
+                      child: Row(
+                    children: [
+                      cardBox(context, 300, 100),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          cardButton(
+                              context,
+                              AppIcons.iInfo,
+                              50,
+                              50,
+                              () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HadithCollectionScreen()),
+                                    )
+                                  }),
+                          cardButton(
+                              context,
+                              AppIcons.iInfo,
+                              30,
+                              30,
+                              () => {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HadithCollectionScreen()),
+                                    )
+                                  })
+                        ],
+                      )
+                    ],
+                  )),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),

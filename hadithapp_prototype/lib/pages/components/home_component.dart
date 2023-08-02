@@ -173,6 +173,49 @@ Widget lastReadHadith(BuildContext context) {
   );
 }
 
+Widget cardButton(BuildContext context, Image icon, double width, double height,
+    Function()? onTap) {
+  double baseWidth = 390;
+  double fem = MediaQuery.of(context).size.width / baseWidth;
+  double ffem = fem * 0.97;
+  width = width * ffem;
+  height = height * ffem;
+
+  return Container(
+      margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 6 * fem),
+      padding: EdgeInsets.fromLTRB(16 * fem, 7 * fem, 15 * fem, 8 * fem),
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: AppColors.aBox,
+        borderRadius: BorderRadius.circular(20 * fem),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.aShadow,
+            offset: Offset(0 * fem, 4 * fem),
+            blurRadius: 2 * fem,
+          ),
+        ],
+      ),
+      child: Center(
+        child: GestureDetector(
+          onTap: onTap
+          // Handle the tap event here
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (context) => const HadithCollectionScreen()),
+          // );
+          ,
+          child: SizedBox(
+            width: 30 * fem,
+            height: 30 * fem,
+            child: icon,
+          ),
+        ),
+      ));
+}
+
 Widget cardBox(BuildContext context, double width, double height) {
   double baseWidth = 390;
   double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -189,35 +232,59 @@ Widget cardBox(BuildContext context, double width, double height) {
           width: width,
           height: height,
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(height / 5),
-              color: AppColors.aBox,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.aShadow,
-                  offset: Offset(0 * fem, 4 * fem),
-                  blurRadius: 2 * fem,
-                ),
-              ],
-            ),
-          ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height / 5),
+                color: AppColors.aBox,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.aShadow,
+                    offset: Offset(0 * fem, 4 * fem),
+                    blurRadius: 2 * fem,
+                  ),
+                ],
+              ),
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(height / 5, 0, 0, height / 5),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    "hadith.getInfo",
+                    style: SafeGoogleFont(
+                      'Manrope',
+                      fontSize: 12 * ffem,
+                      fontWeight: FontWeight.w300,
+                      height: 1.215227286 * ffem / fem,
+                      color: AppColors.aText,
+                    ),
+                  ))),
         ),
         SizedBox(
           width: width,
           height: height / 2,
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(height / 5),
-              color: AppColors.aBox,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.aShadow,
-                  offset: Offset(0 * fem, 4 * fem),
-                  blurRadius: 2 * fem,
-                ),
-              ],
-            ),
-          ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height / 5),
+                color: AppColors.aBox,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.aShadow,
+                    offset: Offset(0 * fem, 4 * fem),
+                    blurRadius: 2 * fem,
+                  ),
+                ],
+              ),
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(height / 5, 0, 0, 0),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "hadith.getName",
+                    style: SafeGoogleFont(
+                      'Manrope',
+                      fontSize: 20 * ffem,
+                      fontWeight: FontWeight.w300,
+                      height: 1.2152272224 * ffem / fem,
+                      color: AppColors.aText,
+                    ),
+                  ))),
         )
       ]));
 }

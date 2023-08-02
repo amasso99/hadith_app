@@ -4,6 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
+class AppIcons {
+  static Image iInfo = Image.asset(
+    'assets/images/info.png',
+    fit: BoxFit.contain,
+  );
+}
+
 class AppColors {
   static const Color aBox = Color(0xff2c2c2c);
   static const Color aBackground = Color(0xff1e1e1e);
