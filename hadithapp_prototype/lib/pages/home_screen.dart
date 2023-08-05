@@ -28,7 +28,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const HomeAppBar(height: 130),
             Container(
               // frame2ZCT (14:81)
               margin: EdgeInsets.fromLTRB(14 * fem, 0 * fem, 15 * fem, 0 * fem),
@@ -38,43 +37,55 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   lastReadHadith(context),
                   SizedBox(height: 20 * fem),
-                  Container(
-                      child: Row(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       cardBox(context, 300, 100),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      const Spacer(),
+                      Center(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           cardButton(
                               context,
                               AppIcons.iInfo,
-                              50,
-                              50,
+                              65,
+                              45,
                               () => {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HadithCollectionScreen()),
+                                              HadithCollectionScreen(
+                                                hadithCollection:
+                                                    HadithCollections
+                                                        .collections[0],
+                                              )),
                                     )
                                   }),
+                          SizedBox(height: 2 * ffem),
                           cardButton(
                               context,
                               AppIcons.iInfo,
-                              30,
-                              30,
+                              65,
+                              45,
                               () => {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const HadithCollectionScreen()),
+                                              HadithCollectionScreen(
+                                                hadithCollection:
+                                                    HadithCollections
+                                                        .collections[0],
+                                              )),
                                     )
                                   })
                         ],
-                      )
+                      ))
                     ],
-                  )),
+                  ),
                   ListView.separated(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),

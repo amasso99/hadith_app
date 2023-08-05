@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/components/home_component.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/pages/home_screen.dart';
 
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Scaffold(
+        backgroundColor: AppColors.aBackground,
+        appBar: HomeAppBar(height: 300),
         body: SingleChildScrollView(
           child: HomeScreen(),
         ),
