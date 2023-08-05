@@ -6,9 +6,12 @@ import 'package:myapp/pages/hadith_collection_screen.dart';
 import 'package:myapp/utils.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const HomeAppBar({super.key, required this.height});
+
   final double height;
 
-  const HomeAppBar({super.key, required this.height});
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +121,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
 }
 
 Widget lastReadHadith(BuildContext context) {
@@ -208,12 +208,69 @@ Widget cardButton(BuildContext context, Image icon, double width, double height,
           // );
           ,
           child: SizedBox(
-            width: 30 * fem,
-            height: 30 * fem,
+            width: height * 0.8,
+            height: height * 0.8,
             child: icon,
           ),
         ),
       ));
+}
+
+class CardButton extends StatelessWidget {
+  final Image icon;
+  double width, height;
+  final Function()? onTap;
+
+  CardButton(
+      {Key? key,
+      required this.icon,
+      required this.width,
+      required this.height,
+      required this.onTap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double baseWidth = 390;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+    width = width * ffem;
+    height = height * ffem;
+
+    return Container(
+        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 6 * fem),
+        padding: EdgeInsets.fromLTRB(16 * fem, 7 * fem, 15 * fem, 8 * fem),
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: AppColors.aBox,
+          borderRadius: BorderRadius.circular(20 * fem),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.aShadow,
+              offset: Offset(0 * fem, 4 * fem),
+              blurRadius: 2 * fem,
+            ),
+          ],
+        ),
+        child: Center(
+          child: GestureDetector(
+            onTap: onTap
+            // Handle the tap event here
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //       builder: (context) => const HadithCollectionScreen()),
+            // );
+            ,
+            child: SizedBox(
+              width: height * 0.8,
+              height: height * 0.8,
+              child: icon,
+            ),
+          ),
+        ));
+  }
 }
 
 Widget cardBox(BuildContext context, double width, double height) {
@@ -461,8 +518,10 @@ Widget hadithBookBox(BuildContext context, HadithCollection hadithCollection) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const HadithCollectionScreen()),
+                              builder: (context) => HadithCollectionScreen(
+                                    hadithCollection:
+                                        HadithCollections.collections[0],
+                                  )),
                         );
                       },
                       child: SizedBox(

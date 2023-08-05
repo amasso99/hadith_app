@@ -5,8 +5,16 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 class AppIcons {
-  static Image iInfo = Image.asset(
+  static final iInfo = Image.asset(
     'assets/images/info.png',
+    fit: BoxFit.contain,
+  );
+  static final iSearch = Image.asset(
+    'assets/images/search.png',
+    fit: BoxFit.contain,
+  );
+  static final iBooks = Image.asset(
+    'assets/images/books.png',
     fit: BoxFit.contain,
   );
 }
