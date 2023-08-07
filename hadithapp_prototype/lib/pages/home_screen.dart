@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/hadith_collection.dart';
-import 'package:myapp/utils.dart';
+import 'package:myapp/utils/utils.dart';
 
 import 'components/home_component.dart';
 import 'hadith_collection_screen.dart';

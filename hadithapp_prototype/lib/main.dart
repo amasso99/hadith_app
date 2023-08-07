@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/utils.dart';
+import 'package:myapp/utils/utils.dart';
 import 'package:myapp/pages/home_screen.dart';
 
 import 'models/hadith_collection.dart';
