@@ -6,12 +6,11 @@ import 'package:myapp/utils/database_manager.dart';
 
 import '../models/hadith.dart';
 import '../utils/utils.dart';
-import 'hadith_book_screen.dart';
 
-class HadithCollectionScreen extends StatelessWidget {
-  final HadithCollection hadithCollection;
+class HadithBookScreen extends StatelessWidget {
+  final HadithBook hadithBook;
 
-  const HadithCollectionScreen({super.key, required this.hadithCollection});
+  const HadithBookScreen({super.key, required this.hadithBook});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class HadithCollectionScreen extends StatelessWidget {
                 height: 50,
                 alignment: Alignment.center,
                 child: Text(
-                  hadithCollection.name,
+                  hadithBook.book,
                   style: SafeGoogleFont(
                     'Manrope',
                     fontSize: 16 * ffem,
@@ -50,10 +49,10 @@ class HadithCollectionScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20 * fem),
-              FutureBuilder<List<HadithBook>>(
-                future: DatabaseManager.instance.getHadithBooks(),
+              FutureBuilder<List<Hadith>>(
+                future: DatabaseManager.instance.getHadiths(hadithBook),
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<HadithBook>> snapshot) {
+                    AsyncSnapshot<List<Hadith>> snapshot) {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }
@@ -69,22 +68,13 @@ class HadithCollectionScreen extends StatelessWidget {
                             final hadithBook = snapshot.data![index];
                             return Wrap(
                               children: [
-                                Center(
-                                  child: GestureDetector(
-                                    onTap: () => Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => HadithBookScreen(
-                                          hadithBook: hadithBook,
-                                        ),
-                                      ),
+                                Center(child: HadithBox(hadith: hadithBook)
+                                    // child: CardBox(
+                                    //     headline: hadithBook.by,
+                                    //     subtitle: hadithBook.text,
+                                    //     width: double.infinity,
+                                    //     height: 100),
                                     ),
-                                    child: CardBox(
-                                        headline: hadithBook.book,
-                                        subtitle: hadithBook.volume,
-                                        width: double.infinity,
-                                        height: 100),
-                                  ),
-                                )
                               ],
                             );
                           },

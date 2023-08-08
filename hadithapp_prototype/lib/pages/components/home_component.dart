@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/utils/utils.dart';
 
+import '../../models/hadith.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.height});
 
@@ -335,6 +337,85 @@ class RoundBox extends StatelessWidget {
         ),
         child: child,
       ),
+    );
+  }
+}
+
+class HadithBox extends StatelessWidget {
+  final Hadith hadith;
+
+  const HadithBox({super.key, required this.hadith});
+
+  @override
+  Widget build(BuildContext context) {
+    double baseWidth = 390;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+
+    double ffem = fem * 0.97;
+
+    BoxDecoration boxDecoration = BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: AppColors.aBox,
+      boxShadow: [
+        BoxShadow(
+          color: AppColors.aShadow,
+          offset: Offset(0 * fem, 4 * fem),
+          blurRadius: 2 * fem,
+        ),
+      ],
+    );
+
+    return Stack(
+      children: [
+        Container(
+          decoration: boxDecoration,
+          child: Container(
+            margin: EdgeInsets.fromLTRB(20 * ffem, 75 * ffem, 0, 20 * ffem),
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              hadith.text,
+              style: SafeGoogleFont(
+                'Manrope',
+                fontSize: 16 * ffem,
+                fontWeight: FontWeight.w300,
+                height: 1.215227286 * ffem / fem,
+                color: AppColors.aText,
+              ),
+            ),
+          ),
+        ),
+        Container(
+          decoration: boxDecoration,
+          child: Container(
+            margin: EdgeInsets.fromLTRB(20 * ffem, 10 * ffem, 0, 10 * ffem),
+            alignment: Alignment.centerLeft,
+            child: Column(
+              children: [
+                Text(
+                  hadith.hadith,
+                  style: SafeGoogleFont(
+                    'Manrope',
+                    fontSize: 11 * ffem,
+                    fontWeight: FontWeight.w300,
+                    height: 1.2152272224 * ffem / fem,
+                    color: AppColors.aText,
+                  ),
+                ),
+                Text(
+                  hadith.by,
+                  style: SafeGoogleFont(
+                    'Manrope',
+                    fontSize: 14 * ffem,
+                    fontWeight: FontWeight.w300,
+                    height: 1.2152272224 * ffem / fem,
+                    color: AppColors.aText,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

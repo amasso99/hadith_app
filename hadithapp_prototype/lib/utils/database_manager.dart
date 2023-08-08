@@ -30,38 +30,42 @@ class DatabaseManager {
 
     var databasesPath = await getApplicationDocumentsDirectory();
     var path = join(databasesPath.path, "sahih_bukhari.sqlite");
-    print("start db program");
-    // Check if the database exists
-    print(path);
+
     var exists = await databaseExists(path);
-    print("db exists");
-    print(exists);
-    if (!exists) {
-      // Should happen only the first time you launch your application
-      print("Creating new copy from asset");
 
-      // Make sure the parent directory exists
-      await Directory(dirname(path)).create(recursive: true);
+    //if (!exists) {
+    // Should happen only the first time you launch your application
 
-      // Copy from asset
-      ByteData data =
-          await rootBundle.load(join("assets", "sahih_bukhari.sqlite"));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    // Make sure the parent directory exists
+    await Directory(dirname(path)).create(recursive: true);
 
-      // Write and flush the bytes written
-      await File(path).writeAsBytes(bytes, flush: true);
-    } else {
-      print("Opening existing database");
-    }
+    // Copy from asset
+    ByteData data =
+        await rootBundle.load(join("assets", "sahih_bukhari.sqlite"));
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+    // Write and flush the bytes written
+    await File(path).writeAsBytes(bytes, flush: true);
+    //}
 
     return await openDatabase(path, readOnly: true);
   }
 
-  Future<List<Hadith>> getHadiths() async {
-    print("hello");
+  Future<List<HadithBook>> getHadithBooks() async {
     Database db = await instance.database;
-    var hadiths = await db.query('sahih_bukhari', orderBy: 'id', limit: 30);
+    var hadithBooks = await db.query('sahih_bukhari_books', orderBy: 'book_id');
+
+    List<HadithBook> hadithBookList = hadithBooks.isNotEmpty
+        ? hadithBooks.map((e) => HadithBook.fromJson(e)).toList()
+        : [];
+    return hadithBookList;
+  }
+
+  Future<List<Hadith>> getHadiths(HadithBook book) async {
+    Database db = await instance.database;
+    var hadiths = await db.query('sahih_bukhari',
+        orderBy: 'id', where: 'book_id = ?', whereArgs: [book.id]);
 
     List<Hadith> hadithList = hadiths.isNotEmpty
         ? hadiths.map((e) => Hadith.fromJson(e)).toList()
